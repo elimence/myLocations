@@ -1,4 +1,4 @@
-import { ADD_CATEGORY, DELETE_CATEGORY, UPDATE_CATEGORY } from "../actions/action-types";
+import { ADD_CATEGORY, DELETE_CATEGORY, UPDATE_CATEGORY, ADD_LOCATION, UPDATE_LOCATION, DELETE_LOCATION } from "../actions/action-types";
 
 const initialState = {
     categories: [],
@@ -11,7 +11,7 @@ export function reducer (state = initialState, action) {
         case ADD_CATEGORY:
             return {
                 ...state,
-                categories: store.categories.concat(action.payload.category)
+                categories: state.categories.concat(action.payload.category)
             }
         
         case UPDATE_CATEGORY:
@@ -40,7 +40,7 @@ export function reducer (state = initialState, action) {
         case ADD_LOCATION:
             return {
                 ...state,
-                locations: store.locations.concat(action.payload.location)
+                locations: state.locations.concat(action.payload.location)
             }
         
         case UPDATE_LOCATION:

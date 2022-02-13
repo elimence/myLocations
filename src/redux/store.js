@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
-import { retrieveFromLocalStorage, saveToLocalStorage } from '../../local-storage'
+import { retrieveFromLocalStorage, saveToLocalStorage } from '../local-storage'
 
 import { reducer } from './reducer'
 
