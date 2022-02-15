@@ -3,7 +3,7 @@ import { useScript } from './hooks/use-script'
 
 export const Marker = (options) => {
     const status = useScript(
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyCUDioSf9nqQMCtELkh7duv6HVpJQIJlZI&callback=init"
+        `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&callback=init`
     );
     const [marker, setMarker] = React.useState();
 

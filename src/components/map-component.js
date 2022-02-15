@@ -21,8 +21,10 @@ function MyMapComponent({center}) {
     return <div className='w-100 h-100' ref={ref} id="map"/>;
 }
 
+
+
 const MapComponent = ({center}) => {
-    return (<Wrapper apiKey={"AIzaSyCUDioSf9nqQMCtELkh7duv6HVpJQIJlZI"} render={render}>
+    return (<Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY} render={render}>
         <MyMapComponent center={center}>
             <Marker 
                 position={center}
