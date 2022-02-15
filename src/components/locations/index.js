@@ -53,11 +53,11 @@ function Locations() {
     useEffect(() => {
       if (categoryId) {
         const data = allLocations.filter(loc => loc.categoryId === categoryId);
-        setFilteredLocations(data)
+        setFilteredLocations((data))
       } else {
         setFilteredLocations(allLocations)
       }
-    })
+    }, [categoryId])
 
     const canSaveNewLocation = Boolean(nameInput && addressInput && latInput && longInput && categoryInput);
 

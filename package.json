@@ -1,5 +1,5 @@
 {
-  "name": "map-app",
+  "name": "mylocations",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -52,11 +52,8 @@
       "last 1 safari version"
     ]
   },
-  "description": "map app",
+  "description": "My Locations",
   "main": "index.js",
   "author": "Sam Ako <elimence@gmail.com>",
-  "license": "MIT",
-  "react-dotenv": {
-    "whitelist": ["REACT_APP_MAPS_API_KEY"]
-  }
+  "license": "MIT"
 }
