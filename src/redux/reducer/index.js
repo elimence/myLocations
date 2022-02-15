@@ -15,21 +15,29 @@ export function reducer (state = initialState, action) {
             }
         
         case UPDATE_CATEGORY:
-            const updateCategories = state.categories.map(category => {
-                if (category.id === action.payload.category.id) {
-                    return action.payload.category
-                }
-                return category
-            })
+            const { id, newName } = action.payload;
+            // const category = state.categories.find(category => category.id === id);
+            const categoryIndex = state.categories.findIndex(category => category.id === id);
+
+            const newCategoriesList = [...state.categories.slice(0, categoryIndex), { id, name: newName }, ...state.categories.slice(categoryIndex+1)]
+
+            // const updatedCategories = 
+            // const updateCategories = state.categories.map(category => {
+            //     if (category.id === action.payload.id) {
+            //         return action.payload.category
+            //     }
+            //     return category
+            // })
 
             return {
                 ...state,
-                categories: updateCategories
+                categories: newCategoriesList
             }
 
         case DELETE_CATEGORY:
+            const index = state.categories.findIndex(category => category.id === action.payload.categoryId);
             const allCategories = [...state.categories];
-            allCategories.splice(action.payload.categoryId, 1)
+            allCategories.splice(index, 1)
 
             return {
                 ...state,
@@ -44,25 +52,25 @@ export function reducer (state = initialState, action) {
             }
         
         case UPDATE_LOCATION:
-            const updateLocations = state.locations.map(location => {
-                if (location.id === action.payload.location.id) {
-                    return action.payload.location
-                }
-                return location
-            })
+            const { locationId, changes } = action.payload;
+            const changeIndex = state.locations.findIndex(location => location.id === locationId);
+            const newList = [...state.locations.slice(0, changeIndex), { ...changes }, ...state.locations.slice(changeIndex+1)]
 
             return {
                 ...state,
-                locations: updateLocations
+                locations: newList
             }
 
         case DELETE_LOCATION:
+            const targetIndex = state.locations.findIndex(location => location.id === action.payload.locationId);
             const allLocations = [...state.locations];
-            allLocations.splice(action.payload.locationId, 1)
+            allLocations.splice(targetIndex, 1)
 
             return {
                 ...state,
                 locations: allLocations
             }
+        default:
+            return state;
     }
 }

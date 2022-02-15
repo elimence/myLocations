@@ -1,21 +1,53 @@
-import React from 'react'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocation, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { Nav, NavItem} from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
-function TopNavbarComponent({ children }) {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
-        <a className="navbar-brand" href="#">MyLocations</a>
-        <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-            {children && children.map(child => {
-                console.log(child)
-                return (<li className="nav-item active" key={child.title}>
-                    <a className="nav-link" onClick={child.props.action}>{child.props.title}</a>
-                </li>)
-            })}
-        </ul>
+const tabs = [{
+    route: "/",
+    icon: faLayerGroup,
+    label: "Categories"
+}, {
+    route: "/locations",
+    icon: faLocation,
+    label: "Locations"
+}]
+
+const TopNavbarComponent = ({children}) => {
+    return (
+        <div>
+            <nav className="navbar navbar-expand-md navbar-light sticky-top" role="navigation">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="/">MyLocations</a>
+                    <Nav className="ml-auto">
+                        {children}
+                    </Nav>
+                </div>
+            </nav>
+
+            {/* Bottom Tab Navigator*/}
+            <nav className="navbar fixed-bottom navbar-light" role="navigation">
+                <Nav className="w-100">
+                    <div className=" d-flex flex-row justify-content-around w-100">
+                        {
+                            tabs.map((tab, index) => (
+                                <NavItem key={`tab-${index}`}>
+                                    <NavLink to={tab.route} className="nav-link" activeClassName="active">
+                                        <div
+                                            className="row d-flex flex-column justify-content-center align-items-center">
+                                            <FontAwesomeIcon size="lg" icon={tab.icon}/>
+                                            <div>{tab.label}</div>
+                                        </div>
+                                    </NavLink>
+                                </NavItem>
+                            ))
+                        }
+                    </div>
+                </Nav>
+            </nav>
         </div>
-    </nav>
-  )
-}
+    )
+};
 
-export default TopNavbarComponent
+export default TopNavbarComponent;
